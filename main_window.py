@@ -1,0 +1,121 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'main_window.ui'
+#
+# Created by: PyQt5 UI code generator 5.12.1
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(641, 459)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.qr_code_icon = QtWidgets.QLabel(self.centralwidget)
+        self.qr_code_icon.setGeometry(QtCore.QRect(30, 30, 231, 211))
+        self.qr_code_icon.setObjectName("qr_code_icon")
+        self.dateEdit_in = QtWidgets.QDateEdit(self.centralwidget)
+        self.dateEdit_in.setGeometry(QtCore.QRect(430, 120, 181, 26))
+        self.dateEdit_in.setObjectName("dateEdit_in")
+        self.start_time_in = QtWidgets.QTimeEdit(self.centralwidget)
+        self.start_time_in.setGeometry(QtCore.QRect(430, 170, 181, 26))
+        self.start_time_in.setObjectName("start_time_in")
+        self.end_time_in = QtWidgets.QTimeEdit(self.centralwidget)
+        self.end_time_in.setGeometry(QtCore.QRect(430, 210, 181, 26))
+        self.end_time_in.setObjectName("end_time_in")
+        self.course_code_in = QtWidgets.QLineEdit(self.centralwidget)
+        self.course_code_in.setGeometry(QtCore.QRect(360, 80, 251, 25))
+        self.course_code_in.setText("")
+        self.course_code_in.setObjectName("course_code_in")
+        self.course_name_in = QtWidgets.QLineEdit(self.centralwidget)
+        self.course_name_in.setGeometry(QtCore.QRect(360, 30, 251, 25))
+        self.course_name_in.setText("")
+        self.course_name_in.setObjectName("course_name_in")
+        self.time_start_label = QtWidgets.QLabel(self.centralwidget)
+        self.time_start_label.setGeometry(QtCore.QRect(360, 170, 71, 21))
+        self.time_start_label.setObjectName("time_start_label")
+        self.end_time_label = QtWidgets.QLabel(self.centralwidget)
+        self.end_time_label.setGeometry(QtCore.QRect(360, 210, 61, 21))
+        self.end_time_label.setObjectName("end_time_label")
+        self.date_label = QtWidgets.QLabel(self.centralwidget)
+        self.date_label.setGeometry(QtCore.QRect(360, 120, 71, 21))
+        self.date_label.setObjectName("date_label")
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(70, 280, 89, 25))
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setGeometry(QtCore.QRect(70, 330, 89, 25))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_3.setGeometry(QtCore.QRect(430, 320, 89, 25))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_4.setGeometry(QtCore.QRect(430, 270, 89, 25))
+        self.pushButton_4.setObjectName("pushButton_4")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 641, 22))
+        self.menubar.setObjectName("menubar")
+        self.menuQRDesk = QtWidgets.QMenu(self.menubar)
+        self.menuQRDesk.setObjectName("menuQRDesk")
+        self.menuReports = QtWidgets.QMenu(self.menubar)
+        self.menuReports.setObjectName("menuReports")
+        self.menuSettings = QtWidgets.QMenu(self.menubar)
+        self.menuSettings.setObjectName("menuSettings")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.actionCreate_QR_Code = QtWidgets.QAction(MainWindow)
+        self.actionCreate_QR_Code.setObjectName("actionCreate_QR_Code")
+        self.actionView_Reports = QtWidgets.QAction(MainWindow)
+        self.actionView_Reports.setObjectName("actionView_Reports")
+        self.actionUser_Settings = QtWidgets.QAction(MainWindow)
+        self.actionUser_Settings.setObjectName("actionUser_Settings")
+        self.actionCheck_for_updates = QtWidgets.QAction(MainWindow)
+        self.actionCheck_for_updates.setObjectName("actionCheck_for_updates")
+        self.menuQRDesk.addAction(self.actionCreate_QR_Code)
+        self.menuReports.addAction(self.actionView_Reports)
+        self.menuSettings.addAction(self.actionUser_Settings)
+        self.menuSettings.addAction(self.actionCheck_for_updates)
+        self.menubar.addAction(self.menuQRDesk.menuAction())
+        self.menubar.addAction(self.menuReports.menuAction())
+        self.menubar.addAction(self.menuSettings.menuAction())
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.qr_code_icon.setText(_translate("MainWindow", "Generated QR Code"))
+        self.time_start_label.setText(_translate("MainWindow", "Starts at :"))
+        self.end_time_label.setText(_translate("MainWindow", "Ends at :"))
+        self.date_label.setText(_translate("MainWindow", "Date :"))
+        self.pushButton.setText(_translate("MainWindow", "Save"))
+        self.pushButton_2.setText(_translate("MainWindow", "Export"))
+        self.pushButton_3.setText(_translate("MainWindow", "Create New"))
+        self.pushButton_4.setText(_translate("MainWindow", "Create"))
+        self.menuQRDesk.setTitle(_translate("MainWindow", "QRDesk"))
+        self.menuReports.setTitle(_translate("MainWindow", "Reports"))
+        self.menuSettings.setTitle(_translate("MainWindow", "Settings"))
+        self.actionCreate_QR_Code.setText(_translate("MainWindow", "Create QR Code"))
+        self.actionView_Reports.setText(_translate("MainWindow", "View Reports"))
+        self.actionUser_Settings.setText(_translate("MainWindow", "User Settings"))
+        self.actionCheck_for_updates.setText(_translate("MainWindow", "Check for updates"))
+
+
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
