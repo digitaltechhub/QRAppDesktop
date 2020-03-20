@@ -1,0 +1,6 @@
+pypng
+pyqrcode
+PyQt5
+phonenumbers
+validate_email
+password_strength
