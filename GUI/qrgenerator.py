@@ -7,6 +7,6 @@ os.chdir(wd + "//")
 
 def qr_gen(string, filename):
     qr = pyqrcode.create(string)
-    img = qr.png(wd + "//"+filename)
+    img = qr.png(wd + "//"+filename+".png")
 
     return img

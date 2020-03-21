@@ -7,6 +7,9 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
+from PIL.ImageQt import ImageQt
+from PIL import Image
 from qrgenerator import qr_gen
 
 
@@ -148,16 +151,23 @@ class Ui_MainWindow(object):
     def on_create_clicked(self):
         course_name = self.course_name_in.text()
         course_code = self.course_code_in.text()
-        start_time = self.start_time_in.textFromDateTime()
-        end_time = self.end_time_in.textFromDateTime()
-        date = self.dateEdit_in.textFromDateTime()
+        start_time = self.start_time_in.time()
+        start_time = str(start_time)
+        end_time = self.end_time_in.time()
+        end_time = str(end_time)
+        date = self.dateEdit_in.date()
+        date = date.toPyDate()
 
-        string = course_name + course_code + start_time + date
-        filename = date + "-" + course_name + course_code + "-" + start_time
+        string = (course_name + course_code + start_time + str(date))
+        string = str(string)
+        filename = str(str(date) + "-" + course_name + course_code + "-" + start_time)
 
         code = qr_gen(string, filename)
 
-
+        pixmap = QPixmap(code)
+        self.qr_code_icon.resize(pixmap.width(), pixmap.height())
+        self.qr_code_icon.setPixmap(pixmap)
+        self.qr_code_icon.show()
 
 
 if __name__ == "__main__":
