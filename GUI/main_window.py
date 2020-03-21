@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from qrgenerator import qr_gen
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -46,18 +46,19 @@ class Ui_MainWindow(object):
         self.date_label = QtWidgets.QLabel(self.centralwidget)
         self.date_label.setGeometry(QtCore.QRect(360, 120, 71, 21))
         self.date_label.setObjectName("date_label")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(70, 280, 89, 25))
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(70, 330, 89, 25))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_3.setGeometry(QtCore.QRect(430, 320, 89, 25))
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_4.setGeometry(QtCore.QRect(430, 270, 89, 25))
-        self.pushButton_4.setObjectName("pushButton_4")
+        self.save_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.save_btn.setGeometry(QtCore.QRect(70, 280, 89, 25))
+        self.save_btn.setObjectName("pushButton")
+        self.export_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.export_btn.setGeometry(QtCore.QRect(70, 330, 89, 25))
+        self.export_btn.setObjectName("pushButton_2")
+        self.create_new_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.create_new_btn.setGeometry(QtCore.QRect(430, 320, 89, 25))
+        self.create_new_btn.setObjectName("pushButton_3")
+        self.create_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.create_btn.setGeometry(QtCore.QRect(430, 270, 89, 25))
+        self.create_btn.clicked.connect(self.on_create_clicked)
+        self.create_btn.setObjectName("pushButton_4")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 641, 22))
@@ -98,10 +99,10 @@ class Ui_MainWindow(object):
         self.time_start_label.setText(_translate("MainWindow", "Starts at :"))
         self.end_time_label.setText(_translate("MainWindow", "Ends at :"))
         self.date_label.setText(_translate("MainWindow", "Date :"))
-        self.pushButton.setText(_translate("MainWindow", "Save"))
-        self.pushButton_2.setText(_translate("MainWindow", "Export"))
-        self.pushButton_3.setText(_translate("MainWindow", "Create New"))
-        self.pushButton_4.setText(_translate("MainWindow", "Create"))
+        self.save_btn.setText(_translate("MainWindow", "Save"))
+        self.export_btn.setText(_translate("MainWindow", "Export"))
+        self.create_new_btn.setText(_translate("MainWindow", "Create New"))
+        self.create_btn.setText(_translate("MainWindow", "Create"))
         self.menuQRDesk.setTitle(_translate("MainWindow", "QRDesk"))
         self.menuReports.setTitle(_translate("MainWindow", "Reports"))
         self.menuSettings.setTitle(_translate("MainWindow", "Settings"))
@@ -109,6 +110,18 @@ class Ui_MainWindow(object):
         self.actionView_Reports.setText(_translate("MainWindow", "View Reports"))
         self.actionUser_Settings.setText(_translate("MainWindow", "User Settings"))
         self.actionCheck_for_updates.setText(_translate("MainWindow", "Check for updates"))
+
+    def on_create_clicked(self):
+        course_name = self.course_name_in.text()
+        course_code = self.course_code_in.text()
+        start_time = self.start_time_in.textFromDateTime()
+        end_time = self.end_time_in.textFromDateTime()
+        date = self.dateEdit_in.textFromDateTime()
+
+        string = course_name + course_code + start_time + date
+        filename = date + "-" + course_name + course_code + "-" + start_time
+
+        code = qr_gen(string, filename)
 
 
 
