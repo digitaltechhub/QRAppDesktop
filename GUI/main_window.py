@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from qrgenerator import qr_gen
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -21,9 +22,11 @@ class Ui_MainWindow(object):
         self.dateEdit_in = QtWidgets.QDateEdit(self.centralwidget)
         self.dateEdit_in.setGeometry(QtCore.QRect(430, 120, 181, 26))
         self.dateEdit_in.setObjectName("dateEdit_in")
+        self.dateEdit_in.setDateTime(QtCore.QDateTime.currentDateTime())
         self.start_time_in = QtWidgets.QTimeEdit(self.centralwidget)
         self.start_time_in.setGeometry(QtCore.QRect(430, 170, 181, 26))
         self.start_time_in.setObjectName("start_time_in")
+        self.start_time_in.setTime(QtCore.QTime.currentTime())
         self.end_time_in = QtWidgets.QTimeEdit(self.centralwidget)
         self.end_time_in.setGeometry(QtCore.QRect(430, 210, 181, 26))
         self.end_time_in.setObjectName("end_time_in")
