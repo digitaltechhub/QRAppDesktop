@@ -19,6 +19,7 @@ class Ui_Signup(object):
         self.emailLineEdit.setGeometry(QtCore.QRect(160, 80, 231, 21))
         self.emailLineEdit.setObjectName("emailLineEdit")
         self.emailLineEdit.setPlaceholderText("Enter your Email address")
+        self.emailLineEdit.textChanged.connect(self.enable_button)
 
         self.emailLbl = QtWidgets.QLabel(Signup)
         self.emailLbl.setGeometry(QtCore.QRect(20, 80, 121, 21))
@@ -32,6 +33,7 @@ class Ui_Signup(object):
         self.phoneNumLineEdit.setGeometry(QtCore.QRect(160, 120, 231, 21))
         self.phoneNumLineEdit.setObjectName("phoneNumLineEdit")
         self.phoneNumLineEdit.setPlaceholderText("Enter your phone number")
+        self.phoneNumLineEdit.textChanged.connect(self.enable_button)
 
         self.confirmPwdLbl = QtWidgets.QLabel(Signup)
         self.confirmPwdLbl.setGeometry(QtCore.QRect(20, 230, 131, 21))
@@ -42,12 +44,14 @@ class Ui_Signup(object):
         self.pwdInputlineEdit.setObjectName("pwdInputlineEdit")
         self.pwdInputlineEdit.setPlaceholderText("Enter your password")
         self.pwdInputlineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.pwdInputlineEdit.textChanged.connect(self.enable_button)
 
         self.confirmPwdLineEdit = QtWidgets.QLineEdit(Signup)
         self.confirmPwdLineEdit.setGeometry(QtCore.QRect(160, 230, 231, 21))
         self.confirmPwdLineEdit.setObjectName("confirmPwdLineEdit")
         self.confirmPwdLineEdit.setPlaceholderText("Confirm your password")
         self.confirmPwdLineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.confirmPwdLineEdit.textChanged.connect(self.enable_button)
 
         self.passwordLbl = QtWidgets.QLabel(Signup)
         self.passwordLbl.setGeometry(QtCore.QRect(20, 180, 121, 21))
@@ -61,12 +65,15 @@ class Ui_Signup(object):
         self.usernameLnEdit.setGeometry(QtCore.QRect(160, 40, 231, 21))
         self.usernameLnEdit.setObjectName("usernameLnEdit")
         self.usernameLnEdit.setPlaceholderText("Enter your username")
+        self.usernameLnEdit.textChanged.connect(self.enable_button)
 
         self.registerBtn = QtWidgets.QPushButton(Signup)
         self.registerBtn.setGeometry(QtCore.QRect(260, 280, 89, 25))
         self.registerBtn.setObjectName("registerBtn")
+        self.registerBtn.setDisabled(True)
         self.registerBtn.clicked.connect(self.onSubmitBtnClicked)
 
+        # TODO: cancel btn to go back to login screen
         self.cancelBtn = QtWidgets.QPushButton(Signup)
         self.cancelBtn.setGeometry(QtCore.QRect(150, 280, 89, 25))
         self.cancelBtn.setObjectName("cancelBtn")
@@ -90,6 +97,11 @@ class Ui_Signup(object):
     # todo: write input validation code
     # todo: implement the cancel button to go back to login screen
 
+    def enable_button(self):
+        if len(self.usernameLnEdit.text()) > 0 and len(self.emailLineEdit.text()) > 0:
+            if len(self.pwdInputlineEdit.text()) > 0 and len(self.confirmPwdLineEdit.text()) > 0:
+                self.registerBtn.setDisabled(False)
+
     def onSubmitBtnClicked(self):
 
         username = self.usernameLnEdit.text()
@@ -99,20 +111,8 @@ class Ui_Signup(object):
         confirmPwd = self.confirmPwdLineEdit.text()
 
         # todo: implement validation methods on input
-        # todo: check blank fields from input
         # todo: check the fields to be valid
         # todo: connect ui to database for writes and checks
-
-        if validation.check_blank_field(username) is not False:
-            return print("True")
-        if validation.check_blank_field(email) is not False:
-            return True
-        if validation.check_blank_field(phonenumber) is not False:
-            return True
-        if validation.check_blank_field(pwdInput) is not False:
-            return True
-        if validation.check_blank_field(confirmPwd) is not False:
-            return True
 
         if validation.check_username(username) is not False:
             return True
