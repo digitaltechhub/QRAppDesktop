@@ -1,3 +1,4 @@
+Pillow
 pypng
 pyqrcode
 PyQt5
