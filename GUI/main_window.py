@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import QPixmap
 from qrgenerator import qr_gen
+from exports import export_pdf
 
 
 class Ui_MainWindow(object):
@@ -184,6 +185,19 @@ class Ui_MainWindow(object):
         self.qr_code_icon.resize(pixmap.width(), pixmap.height())
         self.qr_code_icon.setPixmap(pixmap)
         self.qr_code_icon.show()
+
+    def on_export_clicked(self):
+        course_name = self.course_name_in.text()
+        course_code = self.course_code_in.text()
+        start_time = self.start_time_in.time()
+        start_time = str(start_time)
+        date = self.dateEdit_in.date()
+        date = date.toPyDate()
+
+        string = (course_name + course_code + start_time + str(date))
+        image = string + ".png"
+        filename = str(str(date) + "-" + course_name + course_code + "-" + start_time)
+        pdf_name = export_pdf(image, filename)
 
 
 if __name__ == "__main__":
