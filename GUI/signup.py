@@ -71,6 +71,7 @@ class Ui_Signup(object):
         self.registerBtn.setGeometry(QtCore.QRect(260, 280, 89, 25))
         self.registerBtn.setObjectName("registerBtn")
         self.registerBtn.setDisabled(True)
+        self.registerBtn.setToolTip('Fill all fields to enable')
         self.registerBtn.clicked.connect(self.onSubmitBtnClicked)
 
         # TODO: cancel btn to go back to login screen

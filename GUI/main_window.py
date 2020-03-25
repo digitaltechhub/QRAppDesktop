@@ -6,10 +6,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import QPixmap
-from PIL.ImageQt import ImageQt
-from PIL import Image
 from qrgenerator import qr_gen
 
 
@@ -46,11 +44,14 @@ class Ui_MainWindow(object):
         self.course_code_in.setText("")
         self.course_code_in.setPlaceholderText("Enter course code")
         self.course_code_in.setObjectName("course_code_in")
+        self.course_code_in.textChanged.connect(self.enable_button)
+
         self.course_name_in = QtWidgets.QLineEdit(self.centralwidget)
         self.course_name_in.setGeometry(QtCore.QRect(360, 30, 251, 25))
         self.course_name_in.setText("")
         self.course_name_in.setPlaceholderText("Enter course name")
         self.course_name_in.setObjectName("course_name_in")
+        self.course_name_in.textChanged.connect(self.enable_button)
 
         self.time_start_label = QtWidgets.QLabel(self.centralwidget)
         self.time_start_label.setGeometry(QtCore.QRect(360, 170, 71, 21))
@@ -66,18 +67,26 @@ class Ui_MainWindow(object):
 
         self.save_btn = QtWidgets.QPushButton(self.centralwidget)
         self.save_btn.setGeometry(QtCore.QRect(70, 280, 89, 25))
+        self.save_btn.setDisabled(True)
+        self.save_btn.setToolTip('Click create to enable')
         self.save_btn.setObjectName("pushButton")
 
         self.export_btn = QtWidgets.QPushButton(self.centralwidget)
         self.export_btn.setGeometry(QtCore.QRect(70, 330, 89, 25))
+        self.export_btn.setDisabled(True)
+        self.export_btn.setToolTip('Click create to enable')
         self.export_btn.setObjectName("pushButton_2")
 
         self.create_new_btn = QtWidgets.QPushButton(self.centralwidget)
         self.create_new_btn.setGeometry(QtCore.QRect(430, 320, 89, 25))
         self.create_new_btn.setObjectName("pushButton_3")
+        self.create_new_btn.setDisabled(True)
+        self.create_new_btn.setToolTip('Click create to enable')
 
         self.create_btn = QtWidgets.QPushButton(self.centralwidget)
         self.create_btn.setGeometry(QtCore.QRect(430, 270, 89, 25))
+        self.create_btn.setDisabled(True)
+        self.create_btn.setToolTip('Fill course code and name to enable')
         self.create_btn.clicked.connect(self.on_create_clicked)
         self.create_btn.setObjectName("pushButton_4")
 
@@ -147,6 +156,13 @@ class Ui_MainWindow(object):
         self.actionView_Reports.setText(_translate("MainWindow", "View Reports"))
         self.actionUser_Settings.setText(_translate("MainWindow", "User Settings"))
         self.actionCheck_for_updates.setText(_translate("MainWindow", "Check for updates"))
+
+    def enable_button(self):
+        if len(self.course_code_in.text()) > 0 and len(self.course_name_in.text()) > 0:
+            self.create_btn.setDisabled(False)
+            self.create_new_btn.setDisabled(False)
+            self.save_btn.setDisabled(False)
+            self.export_btn.setDisabled(False)
 
     def on_create_clicked(self):
         course_name = self.course_name_in.text()

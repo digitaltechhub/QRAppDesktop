@@ -1,9 +1,9 @@
 import sys
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWidget
 
 error = 4
+
 
 def window(error):
 	app = QApplication(sys.argv)
@@ -18,23 +18,28 @@ def window(error):
 	w.show()
 	sys.exit(app.exec_())
 
+
 def showdialog(eMsg):
 	msg = QMessageBox()
 	msg.setIcon(QMessageBox.Warning)
 	# todo: implement password policy in error message
-	error_msg = ['null data', 'fill empty fields',
-	             'invalid email', 'enter a valid email account',
-	             'invalid password', 'try again/ reset password',
-	             'invalid phone number', 'enter valid phone number']
+	error_msg = [
+		'null data',
+		'fill empty fields',
+		'invalid email',
+		'enter a valid email account',
+		'invalid password',
+		'try again/ reset password',
+		'invalid phone number',
+		'enter valid phone number']
 
 	msg.setText(error_msg[eMsg])
 	# msg.setInformativeText("Additional Information")
 	msg.setWindowTitle("Error message")
-	msg.setDetailedText(error_msg[eMsg+1])
+	msg.setDetailedText(error_msg[eMsg + 1])
 	msg.setStandardButtons(QMessageBox.Ok)
 	msg.buttonClicked.connect(msgbtn)
 	retval = msg.exec_()
-
 
 
 def msgbtn(i):
