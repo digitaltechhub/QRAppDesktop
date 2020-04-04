@@ -22,11 +22,14 @@ def passwordValidator(input, confirm):
 		nonletters=1,
 	)
 
-	if policy.test(input) == False:
+	if not policy.test(input):
 		e = 3
 		return messageBox.window(e)
 	else:
-		return True
+		if input == confirm:
+			return True
+		else:
+			return False
 
 
 # function validates emails
@@ -60,7 +63,7 @@ def phone_number_validator(num):
 
 
 def check_username(username):
-	#TODO: create username policy
+	# TODO: create username policy
 	if len(str(username)) > 0:
 		return True
 	else:
