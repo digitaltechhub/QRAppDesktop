@@ -1,3 +1,4 @@
+# TODO: Link pycharm to mysql database
 from mysql.connector import errorcode
 import mysql.connector as myc
 from cred import config as conff
