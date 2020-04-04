@@ -60,4 +60,8 @@ def phone_number_validator(num):
 
 
 def check_username(username):
-	pass
+	#TODO: create username policy
+	if len(str(username)) > 0:
+		return True
+	else:
+		return False

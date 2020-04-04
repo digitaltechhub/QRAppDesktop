@@ -8,6 +8,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import validation
+import sys
+import os
+sys.path.append(os.path.abspath('../database'))
+import sql_connect
+
 
 
 class Ui_Signup(object):
@@ -129,7 +134,7 @@ class Ui_Signup(object):
 
 
 if __name__ == "__main__":
-    import sys
+    # import sys
 
     app = QtWidgets.QApplication(sys.argv)
     Signup = QtWidgets.QDialog()
