@@ -68,3 +68,11 @@ def check_username(username):
 		return True
 	else:
 		return False
+
+
+def validate_input(username, email, phonenumber, pwd_in, pwd_conf):
+	if check_username(username) and email_validator(email) or phone_number_validator(phonenumber):
+		if passwordValidator(pwd_in, pwd_conf):
+			return True
+	else:
+		return False
