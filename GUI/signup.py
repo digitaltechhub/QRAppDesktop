@@ -119,18 +119,13 @@ class Ui_Signup(object):
         # todo: implement validation methods on input
         # todo: check the fields to be valid
         # todo: connect ui to database for writes and checks
-
-        if validation.check_username(username) is not False:
-            return True
-
-        if validation.email_validator(email) is not False:
-            return True
-
-        if validation.phone_number_validation(phonenumber) is not False:
-            return True
-
-        if validation.passwordValidator(pwdInput, confirmPwd) is not False:
-            return True
+        try:
+            if validation.validate_input(username, email, phonenumber, pwdInput, confirmPwd):
+                sql_connect.register_user(username, email, phonenumber, pwdInput)
+            else:
+                print("FAILED")
+        except Exception as e:
+            print(e)
 
 
 if __name__ == "__main__":
