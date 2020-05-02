@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from signup import Ui_Signup
 
 
 # TODO: Check if user is connected to the internet
@@ -27,6 +28,7 @@ class Ui_login_frame(object):
         self.user_name_in.setText("")
         self.user_name_in.setObjectName("user_name_in")
         self.user_name_in.setPlaceholderText("Enter Username")
+        self.user_name_in.textChanged.connect(self.enable_button)
 
         self.user_pwd_in = QtWidgets.QLineEdit(login_frame)
         self.user_pwd_in.setGeometry(QtCore.QRect(100, 210, 161, 25))
@@ -34,10 +36,13 @@ class Ui_login_frame(object):
         self.user_pwd_in.setObjectName("user_pwd_in")
         self.user_pwd_in.setPlaceholderText("Enter Password")
         self.user_pwd_in.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.user_pwd_in.textChanged.connect(self.enable_button)
 
         self.login_btn = QtWidgets.QPushButton(login_frame)
         self.login_btn.setGeometry(QtCore.QRect(130, 260, 89, 25))
         self.login_btn.setObjectName("login_btn")
+        self.login_btn.setDisabled(True)
+        self.login_btn.setToolTip('Fill all fields to enable')
         self.login_btn.clicked.connect(self.onLoginBtnClicked)
 
         self.register_btn = QtWidgets.QPushButton(login_frame)
@@ -62,6 +67,10 @@ class Ui_login_frame(object):
 
         if assert_in(Username, Password):
             pass
+
+    def enable_button(self):
+        if len(self.user_name_in.text()) > 0 and len(self.user_pwd_in.text()) > 0:
+            self.login_btn.setDisabled(False)
 
     def retranslateUi(self, login_frame):
         _translate = QtCore.QCoreApplication.translate
