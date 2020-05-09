@@ -22,6 +22,10 @@ class Ui_login_frame(object):
         self.user_icon = QtWidgets.QLabel(login_frame)
         self.user_icon.setGeometry(QtCore.QRect(140, 40, 71, 81))
         self.user_icon.setObjectName("user_icon")
+        image = QtGui.QImage(".images/icons8-user-96.png")
+        pp = QtGui.QPixmap.fromImage(image)
+        self.user_icon.setPixmap(pp)
+        self.user_icon.show()
 
         self.user_name_in = QtWidgets.QLineEdit(login_frame)
         self.user_name_in.setGeometry(QtCore.QRect(100, 160, 161, 25))
