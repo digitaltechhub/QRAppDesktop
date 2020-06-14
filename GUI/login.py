@@ -7,17 +7,22 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from signup import Ui_Signup
+import signup
 
 
 # TODO: Check if user is connected to the internet
 
-class Ui_login_frame(object):
+class Ui_login_frame(QtWidgets.QDialog):
+    def __init__(self):
+        QtWidgets.QDialog.__init__(self)
+        self.reg = signup.Ui_Signup()
+        self.setupUi(self)
+
     def setupUi(self, login_frame):
         login_frame.setObjectName("login_frame")
         login_frame.resize(334, 387)
-        login_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        login_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        # login_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        # login_frame.setFrameShadow(QtWidgets.QFrame.Raised)
 
         self.user_icon = QtWidgets.QLabel(login_frame)
         self.user_icon.setGeometry(QtCore.QRect(140, 40, 71, 81))
@@ -52,9 +57,14 @@ class Ui_login_frame(object):
         self.register_btn = QtWidgets.QPushButton(login_frame)
         self.register_btn.setGeometry(QtCore.QRect(130, 300, 89, 25))
         self.register_btn.setObjectName("register_btn")
+        self.register_btn.clicked.connect(self.on_register_btn)
 
         self.retranslateUi(login_frame)
         QtCore.QMetaObject.connectSlotsByName(login_frame)
+
+    def on_register_btn(self):
+        self.close()
+        self.reg.show()
 
     def onLoginBtnClicked(self):
         Username = self.user_name_in.text()
@@ -88,8 +98,6 @@ if __name__ == "__main__":
     import sys
 
     app = QtWidgets.QApplication(sys.argv)
-    login_frame = QtWidgets.QFrame()
     ui = Ui_login_frame()
-    ui.setupUi(login_frame)
-    login_frame.show()
+    ui.show()
     sys.exit(app.exec_())

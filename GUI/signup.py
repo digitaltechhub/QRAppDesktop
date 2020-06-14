@@ -12,10 +12,14 @@ import sys
 import os
 sys.path.append(os.path.abspath('../database'))
 import sql_connect
+import login
 
 
+class Ui_Signup(QtWidgets.QDialog):
+    def __init__(self):
+        QtWidgets.QDialog.__init__(self)
+        self.setupUi(self)
 
-class Ui_Signup(object):
     def setupUi(self, Signup):
         Signup.setObjectName("Signup")
         Signup.resize(420, 343)
@@ -83,6 +87,8 @@ class Ui_Signup(object):
         self.cancelBtn = QtWidgets.QPushButton(Signup)
         self.cancelBtn.setGeometry(QtCore.QRect(150, 280, 89, 25))
         self.cancelBtn.setObjectName("cancelBtn")
+        self.cancelBtn.clicked.connect(self.on_cancel)
+        # self.cancelBtn.clicked.connect()
 
         self.retranslateUi(Signup)
         QtCore.QMetaObject.connectSlotsByName(Signup)
@@ -106,6 +112,14 @@ class Ui_Signup(object):
             if len(self.pwdInputlineEdit.text()) > 0 and len(self.confirmPwdLineEdit.text()) > 0:
                 self.registerBtn.setDisabled(False)
 
+    def login_window(self):
+        self.win = login.Ui_login_frame()
+        self.win.show()
+
+    def on_cancel(self):
+        self.close()
+        self.login_window()
+
     def onSubmitBtnClicked(self):
 
         username = self.usernameLnEdit.text()
@@ -116,28 +130,21 @@ class Ui_Signup(object):
 
         # todo: implement validation methods on input
         # todo: check the fields to be valid
-        # todo: connect ui to database for writes and checks
+        # todo: encrypt password even in database
+        # todo: implement error message on failed registration showing error field
 
         if validation.validate_input(username, email, phonenumber, pwdInput, confirmPwd):
             sql_connect.register_user(username, email, phonenumber, pwdInput)
         else:
             print("FAILED")
 
-        # try:
-        #     if validation.validate_input(username, email, phonenumber, pwdInput, confirmPwd):
-        #         sql_connect.register_user(username, email, phonenumber, pwdInput)
-        #     else:
-        #         print("FAILED")
-        # except Exception as e:
-        #     print(e)
+
+def main():
+    app = QtWidgets.QApplication(sys.argv)
+    ui = Ui_Signup()
+    ui.show()
+    sys.exit(app.exec_())
 
 
 if __name__ == "__main__":
-    # import sys
-
-    app = QtWidgets.QApplication(sys.argv)
-    Signup = QtWidgets.QDialog()
-    ui = Ui_Signup()
-    ui.setupUi(Signup)
-    Signup.show()
-    sys.exit(app.exec_())
+    main()
