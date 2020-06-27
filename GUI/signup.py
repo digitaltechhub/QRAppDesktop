@@ -83,7 +83,6 @@ class Ui_Signup(QtWidgets.QDialog):
         self.registerBtn.setToolTip('Fill all fields to enable')
         self.registerBtn.clicked.connect(self.onSubmitBtnClicked)
 
-        # TODO: cancel btn to go back to login screen
         self.cancelBtn = QtWidgets.QPushButton(Signup)
         self.cancelBtn.setGeometry(QtCore.QRect(150, 280, 89, 25))
         self.cancelBtn.setObjectName("cancelBtn")
@@ -105,7 +104,6 @@ class Ui_Signup(QtWidgets.QDialog):
         self.cancelBtn.setText(_translate("Signup", "Cancel"))
 
     # todo: add show password checkbox
-    # todo: implement the cancel button to go back to login screen
 
     def enable_button(self):
         if len(self.usernameLnEdit.text()) > 0 and len(self.emailLineEdit.text()) > 0:
