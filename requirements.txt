@@ -5,3 +5,4 @@ PyQt5
 phonenumbers
 validate_email
 password_strength
+mysql-connector-python
