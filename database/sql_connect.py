@@ -1,7 +1,8 @@
 # TODO: Link pycharm to mysql database
+# TODO: Add date automatically to table on registration
 from mysql.connector import errorcode
 import mysql.connector as myc
-from cred import config as conff
+from database.cred import config as conff
 
 cursor = None
 config = conff
@@ -31,7 +32,7 @@ def close_conn(conn, cursor):
 
 
 def register_user(username, email, phone_number, password):
-    global connec, cursor
+    global cursor, connec
     try:
         insert_query = 'INSERT INTO Users (username, email, phone_number, user_password) VALUES (%s, %s, %s, %s)'
         quadruple = (username, email, phone_number, password)
@@ -45,3 +46,41 @@ def register_user(username, email, phone_number, password):
     finally:
         close_conn(connec, cursor)
 
+
+def check_user(username):
+    """
+
+    :type username: object
+    :param username: from login/input, user trying to login
+    """
+    q = None
+    global cursor, connec
+    try:
+        select_query = "SELECT email, phone_number, user_password FROM Users WHERE username = %s"
+
+        cursor, connec = connect()
+
+        cursor.execute(select_query, (username,))
+        q = cursor.fetchall()
+
+    except myc.Error as e:
+        print(e)
+    finally:
+        close_conn(connec, cursor)
+
+    return q
+
+
+def login_user(username, password):
+    # TODO: setup method to return error messages
+    # TODO: create last login updated after every successful user login
+    result = check_user(username)
+
+    if result:
+        pwd = result[0][2]
+        if pwd == password:
+            return True
+        else:
+            return False
+    else:
+        return False
