@@ -8,14 +8,21 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import signup
-
+import main_window
+import os,sys
+sys.path.append(os.path.abspath('../database'))
+import sql_connect
 
 # TODO: Check if user is connected to the internet
+# TODO: add a table for last login details, updates on successful login
+# TODO: implement forgot password dialog
+
 
 class Ui_login_frame(QtWidgets.QDialog):
     def __init__(self):
         QtWidgets.QDialog.__init__(self)
         self.reg = signup.Ui_Signup()
+        self.main_window = main_window.Ui_MainWindow()
         self.setupUi(self)
 
     def setupUi(self, login_frame):
@@ -70,17 +77,9 @@ class Ui_login_frame(QtWidgets.QDialog):
         Username = self.user_name_in.text()
         Password = self.user_pwd_in.text()
 
-        # print(type(Username), type(Password))
-        # print(len(Username))
-
-        def assert_in(U, P):
-            if len(U) or len(P) is not 0:
-                return True
-            else:
-                return False
-
-        if assert_in(Username, Password):
-            pass
+        if sql_connect.login_user(Username, Password):
+            self.close()
+            self.main_window.show()
 
     def enable_button(self):
         if len(self.user_name_in.text()) > 0 and len(self.user_pwd_in.text()) > 0:

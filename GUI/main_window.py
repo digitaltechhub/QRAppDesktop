@@ -12,7 +12,11 @@ from qrgenerator import qr_gen
 from exports import export_pdf
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        QtWidgets.QMainWindow.__init__(self)
+        self.setupUi(self)
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(641, 459)
@@ -203,8 +207,6 @@ class Ui_MainWindow(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    ui.show()
     sys.exit(app.exec_())
