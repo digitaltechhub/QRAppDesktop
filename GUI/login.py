@@ -34,9 +34,10 @@ class Ui_login_frame(QtWidgets.QDialog):
         self.user_icon = QtWidgets.QLabel(login_frame)
         self.user_icon.setGeometry(QtCore.QRect(140, 40, 71, 81))
         self.user_icon.setObjectName("user_icon")
-        image = QtGui.QImage(".images/icons8-user-96.png")
+        image = QtGui.QImage("../images/icons8-user-96.png")
         pp = QtGui.QPixmap.fromImage(image)
         self.user_icon.setPixmap(pp)
+        self.user_icon.resize(pp.width(), pp.height())
         self.user_icon.show()
 
         self.user_name_in = QtWidgets.QLineEdit(login_frame)
@@ -87,8 +88,8 @@ class Ui_login_frame(QtWidgets.QDialog):
 
     def retranslateUi(self, login_frame):
         _translate = QtCore.QCoreApplication.translate
-        login_frame.setWindowTitle(_translate("login_frame", "Login"))
-        self.user_icon.setText(_translate("login_frame", "user icon"))
+        login_frame.setWindowTitle(_translate("login_frame", "User Login"))
+        # self.user_icon.setText(_translate("login_frame", "user icon"))
         self.login_btn.setText(_translate("login_frame", "Login"))
         self.register_btn.setText(_translate("login_frame", "Register"))
 
