@@ -146,7 +146,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.qr_code_icon.setText(_translate("MainWindow", "Generated QR Code"))
+        # self.qr_code_icon.setText(_translate("MainWindow", "Generated QR Code"))
         self.time_start_label.setText(_translate("MainWindow", "Starts at :"))
         self.end_time_label.setText(_translate("MainWindow", "Ends at :"))
         self.date_label.setText(_translate("MainWindow", "Date :"))
@@ -181,12 +181,13 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         string = (course_name + course_code + start_time + str(date))
         string = str(string)
-        filename = str(str(date) + "-" + course_name + course_code + "-" + start_time)
+        filename = str(str(date) + "-" + course_name + "-" + course_code)
 
         code = qr_gen(string, filename)
 
-        pixmap = QPixmap(code)
-        self.qr_code_icon.resize(pixmap.width(), pixmap.height())
+        pixmap = QPixmap(filename + ".png")
+        self.qr_code_icon.setScaledContents(True)
+        # self.qr_code_icon.resize(pixmap.width(), pixmap.height())
         self.qr_code_icon.setPixmap(pixmap)
         self.qr_code_icon.show()
 
